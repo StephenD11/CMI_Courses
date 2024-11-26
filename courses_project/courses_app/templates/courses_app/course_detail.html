@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ course.title }}</h1>
+        <p>{{ course.description }}</p>
+    </header>
+
+    <section class="topics">
+        <h2>Темы курса:</h2>
+        <ul>
+            {% for topic in course.topics.all %}
+                <li>{{ topic.title }}</li>
+            {% empty %}
+                <li>Нет доступных тем</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Добавляем проверку доступа к обучению -->
+    <section class="course-access">
+        {% if user.role == 'student' and user in course.students.all or user.role == 'admin' %}
+            <button>Пройти курс</button>
+        {% else %}
+            <p>У вас нет доступа к обучению этого курса</p>
+            <p>Запросите доступ у вашего администратора</p>
+        {% endif %}
+    </section>
+</body>
+</html>

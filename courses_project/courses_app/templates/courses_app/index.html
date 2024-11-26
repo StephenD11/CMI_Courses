@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'courses_app/styles.css' %}">
+</head>
+<body>
+<header>
+    <h1>Добро пожаловать на курсы</h1>
+</header>
+
+<nav>
+    <!-- Если пользователь авторизован, показываем его имя, если нет, показываем кнопки входа и регистрации -->
+    {% if user.is_authenticated %}
+        <p>Вы вошли как: {{ user.username }}</p>
+        <button onclick="window.location.href='{% url 'logout' %}'">Выйти</button>
+    {% else %}
+        <button onclick="window.location.href='{% url 'login' %}'">Войти</button>
+        <button onclick="window.location.href='{% url 'register' %}'">Зарегистрироваться</button>
+    {% endif %}
+</nav>
+
+<section class="courses">
+    <h2>Каталог курсов</h2>
+    {% if courses %}
+        <ul>
+            {% for course in courses %}
+                <li>
+                    <a href="{% url 'course_detail' course.id %}">{{ course.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Курсы пока не добавлены.</p>
+    {% endif %}
+</section>
+
+</body>
+</html>
