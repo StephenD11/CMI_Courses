@@ -1,26 +1,9 @@
-{% load static %}
+{% extends 'courses_app/index.html' %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход</title>
-    <link rel="stylesheet" href="{% static 'courses_app/styles.css' %}">
-</head>
-<body>
-<header>
-    <h1>Вход на сайт</h1>
-</header>
+{% block title %}Логин{% endblock %}
 
-<nav>
-    {% if user.is_authenticated %}
-        <p>Вы вошли как: {{ user.username }}</p>
-        <button onclick="window.location.href='{% url 'logout' %}'">Выйти</button>
-    {% else %}
-        <button onclick="window.location.href='{% url 'register' %}'">Зарегистрироваться</button>
-    {% endif %}
-</nav>
+
+{% block content %}
 
 <section class="login-form">
     <h2>Введите данные для входа</h2>
@@ -36,6 +19,5 @@
         <p style="color: red;">{{ error }}</p>
     {% endif %}
 </section>
+{% endblock %}
 
-</body>
-</html>

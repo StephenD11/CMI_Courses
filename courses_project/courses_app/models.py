@@ -4,8 +4,6 @@ from django.core.validators import validate_slug
 from django.contrib.auth import get_user_model
 
 
-
-
 # Модель пользователя
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
@@ -20,7 +18,7 @@ class CustomUser(AbstractUser):
         max_length=150,
         unique=True,
         help_text='Введите имя пользователя [150 символов или меньше]',
-        error_messages={'unique':"Такое имя уже существует, выбирете другое"},
+        error_messages={'unique': "Такое имя уже существует, выбирете другое"},
         verbose_name='Логин'
     )
     # Поле для email пользователя, оно также уникально
@@ -40,27 +38,91 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username  # При отображении пользователя выводится его имя (логин)
 
+
 # Модель курса
 class Course(models.Model):
-    title = models.CharField(max_length=255)  # Название курса
-    description = models.TextField()  # Описание курса
-    created_at = models.DateTimeField(auto_now_add=True) # устанавливает текущее время при создании
+    title = models.CharField(max_length=255,verbose_name='Курс')  # Название курса
+    description = models.TextField(verbose_name='Описание')  # Описание курса
+    created_at = models.DateTimeField(auto_now_add=True,verbose_name='Дата создания')  # устанавливает текущее время при создании
 
     # Связь с пользователями (студентами). Один курс может быть связан с несколькими пользователями
-    students = models.ManyToManyField(get_user_model(), related_name='courses')  #Связь многие ко многим
+    students = models.ManyToManyField(get_user_model(), related_name='courses',verbose_name='Студент')  # Связь многие ко многим
+    password = models.CharField(max_length=30, null=False, blank=False, default='default',verbose_name='Пароль')
+
+    class Meta:
+        verbose_name = 'Курс'  # Единственное число
+        verbose_name_plural = 'Курсы'  # Множественное число
 
     def __str__(self):
         return self.title
 
 
 # Модель темы курса
-class CourseTopic(models.Model):
-    course = models.ForeignKey(Course, related_name='topics', on_delete=models.CASCADE)  # Связь с курсом
-    title = models.CharField(max_length=255)  # Название темы
-    content = models.TextField()  # Контент темы
-    order = models.IntegerField()  # Порядок отображения темы (по номеру)
+class Topic(models.Model):
+    course = models.ForeignKey(
+        Course,  # Связываем тему с конкретным курсом через внешний ключ
+        on_delete=models.CASCADE,  # Указываем, что удаление курса приведёт к удалению всех его тем
+        related_name='topics',
+        verbose_name='Курс'
+    )
+
+    title = models.CharField(max_length=200,verbose_name='Название')
+    description = models.TextField(verbose_name='Описание')
+    order = models.PositiveIntegerField(default=0,verbose_name='Номер темы')  # Поле для сортировки тем в курсе
+    is_completed = models.BooleanField(default=False,verbose_name='Завершен')  # Флаг для отслеживания завершения темы
+
+    class Meta:
+        verbose_name = 'Тема'  # Единственное число
+        verbose_name_plural = 'Темы'  # Множественное число
 
     def __str__(self):
-        return f'{self.course.title} - {self.title}'
+        return f"{self.course.title} - {self.title}"
 
 
+class Question(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='question',verbose_name='Темы')
+    question_text = models.CharField(max_length=500,verbose_name='Текст вопроса')
+
+    class Meta:
+        verbose_name = 'Вопрос'  # Единственное число
+        verbose_name_plural = 'Вопросы'  # Множественное число
+
+    def __str__(self):
+        return self.question_text
+
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer')
+    answer_text = models.CharField(max_length=500)
+    is_correct = models.BooleanField(default=False)
+
+
+    class Meta:
+        verbose_name = 'Ответ'  # Единственное число
+        verbose_name_plural = 'Ответы'  # Множественное число
+
+
+    def __str__(self):
+        return self.answer_text
+
+
+class AssignmentSubmission(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,verbose_name='Слушатель')  # Привязка к пользователю
+    assignment_url = models.URLField(max_length=800,verbose_name='Ссылка')  # Ссылка на тест
+    submitted_at = models.DateTimeField(auto_now_add=True,verbose_name='Дата')  # Дата отправки
+
+    class Meta:
+        verbose_name = 'Контрольная работа'  # Единственное число
+        verbose_name_plural = 'Контрольные работы'  # Множественное число
+
+    def __str__(self):
+        return f"Тест {self.assignment_url} от {self.user}"
+
+class Notification(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Notification for {self.user.username} - {self.created_at}"

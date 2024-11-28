@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-</head>
-<body>
+{% extends 'courses_app/index.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
     <h1>Страница регистрации</h1>
 
     <form method="post">
@@ -14,6 +11,5 @@
         <button type="submit">Зарегистрироваться</button>
     </form>
 
-    <p>Есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
-</body>
-</html>
+    <p>Есть аккаунт? <a href="{% url 'courses_app:login' %}">Войти</a></p>
+{% endblock %}

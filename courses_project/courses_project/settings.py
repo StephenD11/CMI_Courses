@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Убираем настройки безопасности для HTTPS
+SECURE_SSL_REDIRECT = False  # Это отключает перенаправление на HTTPS
+SECURE_HSTS_SECONDS = 0  # Отключает HSTS
 
 # Application definition
 
@@ -76,7 +79,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'courses_project.wsgi.application'
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'login'
+LOGIN_URL = 'courses_app:login'
 LOGOUT_REDIRECT_URL = '/'
 
 # Database

@@ -5,39 +5,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
+    <title>{% block title %}Главная{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'courses_app/styles.css' %}">
 </head>
 <body>
+
 <header>
-    <h1>Добро пожаловать на курсы</h1>
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="{% url 'courses_app:index' %}" class="logo">Главная</a>
+            <a href="{% url 'courses_app:all_courses' %}">Каталог</a>
+            <a href="{% url 'courses_app:documents' %}">Документы</a>
+            <a href="{% url 'courses_app:contacts' %}">Контакты</a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="nav-links-2">
+            <p>Вы вошли как: {{ user.username }}</p>
+            <button class="auth-button" onclick="window.location.href='{% url 'courses_app:profile' %}'">Профиль</button>
+            <button class="auth-button" onclick="window.location.href='{% url 'courses_app:logout' %}'">Выйти</button>
+        </div>
+        {% else %}
+        <div class="nav-links-2">
+            <a href="{% url 'courses_app:login' %}" class="auth-button">Вход</a>
+            <a href="{% url 'courses_app:register' %}" class="auth-button">Зарегистрироваться</a>
+        </div>
+        {% endif %}
+    </div>
 </header>
 
-<nav>
-    <!-- Если пользователь авторизован, показываем его имя, если нет, показываем кнопки входа и регистрации -->
-    {% if user.is_authenticated %}
-        <p>Вы вошли как: {{ user.username }}</p>
-        <button onclick="window.location.href='{% url 'logout' %}'">Выйти</button>
-    {% else %}
-        <button onclick="window.location.href='{% url 'login' %}'">Войти</button>
-        <button onclick="window.location.href='{% url 'register' %}'">Зарегистрироваться</button>
-    {% endif %}
-</nav>
+<main>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</main>
 
-<section class="courses">
-    <h2>Каталог курсов</h2>
-    {% if courses %}
-        <ul>
-            {% for course in courses %}
-                <li>
-                    <a href="{% url 'course_detail' course.id %}">{{ course.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Курсы пока не добавлены.</p>
+<section>
+    {% if request.path == '/' %}
+    <button onclick="window.location.href='{% url 'courses_app:all_courses' %}'">Каталог курсов</button>
     {% endif %}
 </section>
+
+<footer>
+</footer>
 
 </body>
 </html>

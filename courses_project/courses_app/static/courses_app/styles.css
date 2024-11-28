@@ -1,37 +1,86 @@
+/* Основные стили для всей страницы */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
 header {
     background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
+    color: #fff;
+    padding: 10px 0;
 }
 
-nav {
-    text-align: center;
-    margin-top: 20px;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-nav button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
+.navbar .logo {
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-links-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+}
+
+.navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Стиль для кнопок входа и регистрации */
+.auth-button, .login-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 0 10px;
+    font-size: 16px;
     cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    border: none;
 }
 
-nav button:hover {
-    background-color: #45a049;
+.auth-button:hover, .login-button:hover {
+    background-color: #0056b3;
 }
 
+/* Стиль для секции курсов */
 .courses {
+    max-width: 1200px;
+    margin: 40px auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.courses h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .courses ul {
@@ -39,15 +88,58 @@ nav button:hover {
     padding: 0;
 }
 
-.courses li {
-    background-color: #fff;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.courses ul li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.courses li a {
+.courses ul li a {
     text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+}
+
+.courses ul li a:hover {
+    text-decoration: underline;
+}
+
+.courses p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Стиль для информации о пользователе */
+nav p {
+    margin-right: 20px;
+    font-size: 16px;
     color: #333;
+}
+
+
+
+/* Уведомление */
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 128, 0, 0.8); /* Зеленый фон с прозрачностью */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Изначально скрыто */
+}
+
+.close-notification {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
 }

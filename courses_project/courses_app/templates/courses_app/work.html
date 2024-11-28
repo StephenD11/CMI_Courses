@@ -1,0 +1,15 @@
+{% extends 'courses_app/index.html' %}
+
+{% block title %}Контрольная работа{% endblock %}
+
+{% block content %}
+    <h1>Контрольная работа для курса: {{ course.title }}</h1>
+
+    <h3>Загрузите ваш проект на Яндекс.Диск,Google.Disk или в репозиторий Github</h3>
+    <h4>вставьте ссылку в поле и отправьте его на проверку</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}

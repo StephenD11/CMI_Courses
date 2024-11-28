@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ course.title }}</h1>
+  <p>{{ course.description }}</p>
+
+  <h2>Темы курса:</h2>
+  <ul>
+    {% for topic in topics %}
+      <li>
+        {% if topic in user_topics %}
+          <strong>{{ topic.title }}</strong> (Завершено)
+        {% else %}
+          {{ topic.title }} (Не завершено)
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Прогресс:</h3>
+  <p>{{ user_topics|length }} из {{ topics|length }} тем завершено.</p>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'courses_app/index.html' %}
+{% block title %}Каталог курсов{% endblock %}
+
+{% block content %}
+
+<section class="courses">
+    <h2>Каталог курсов</h2>
+    {% if courses %}
+    <ul>
+        {% for course in courses %}
+        <li>
+            <a href="{% url 'courses_app:course_detail' course.id %}">{{ course.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Курсы пока не добавлены.</p>
+    {% endif %}
+</section>
+
+{% endblock %}

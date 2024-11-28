@@ -1,35 +1,56 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ course.title }}</title>
-</head>
-<body>
-    <header>
-        <h1>{{ course.title }}</h1>
-        <p>{{ course.description }}</p>
-    </header>
+{% extends 'courses_app/index.html' %}
 
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ course.title }}</h1>
+  <p>{{ course.description }}</p>
+
+  <!-- Проверка доступа по паролю -->
+  {% if password_valid and user.role == "student" %}
     <section class="topics">
-        <h2>Темы курса:</h2>
-        <ul>
-            {% for topic in course.topics.all %}
-                <li>{{ topic.title }}</li>
-            {% empty %}
-                <li>Нет доступных тем</li>
-            {% endfor %}
-        </ul>
+      <h2>Темы курса:</h2>
+      <h3>Теперь у вас есть доступ. Нажмите на тему, чтобы войти в нее</h3>
+      <ol>
+        {% for topic in course.topics.all %}
+          <li>
+            {% if topic.is_completed %}
+              <strong><a href="{% url 'courses_app:topic_detail' course_id=course.id topic_id=topic.id %}">{{ topic.title }}</a></strong> (Завершено)
+            {% else %}
+              <a href="{% url 'courses_app:topic_detail' course_id=course.id topic_id=topic.id %}">{{ topic.title }}</a> (Не завершено)
+            {% endif %}
+          </li>
+        {% empty %}
+          <li>Нет доступных тем</li>
+        {% endfor %}
+      </ol>
+        {% if course.id %}
+            <a href="{% url 'courses_app:assignment_view' course_id=course.id %}">Перейти к заданию</a>
+        {% else %}
+            <p>Курс не найден.</p>
+        {% endif %}    </section>
+          {% else %}
+    <!-- Если пароль неверный или пользователь не является студентом -->
+    <section class="topics">
+      <h2>Темы курса:</h2>
+      <ol>
+        {% for topic in course.topics.all %}
+          <li>{{ topic.title }}</li>
+        {% empty %}
+          <li>Нет доступных тем</li>
+        {% endfor %}
+      </ol>
     </section>
 
-    <!-- Добавляем проверку доступа к обучению -->
-    <section class="course-access">
-        {% if user.role == 'student' and user in course.students.all or user.role == 'admin' %}
-            <button>Пройти курс</button>
-        {% else %}
-            <p>У вас нет доступа к обучению этого курса</p>
-            <p>Запросите доступ у вашего администратора</p>
-        {% endif %}
+    <!-- Форма для ввода пароля -->
+    <section class="course-password-form">
+      <h3>Введите пароль для доступа к курсу:</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Выводим форму пароля -->
+        <button type="submit">Подтвердить</button>
+      </form>
     </section>
-</body>
-</html>
+  {% endif %}
+
+{% endblock %}
