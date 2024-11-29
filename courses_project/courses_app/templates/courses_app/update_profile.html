@@ -1,0 +1,49 @@
+{% extends 'courses_app/index.html' %}
+
+{% block content %}
+  <h1>Обновление Email</h1>
+<form method="post">
+    {% csrf_token %}
+
+    <!-- Поле для имени пользователя -->
+    <div class="form-group">
+        <label for="id_username">Имя пользователя:</label>
+        {{ form.username }}
+        {% if form.username.help_text %}
+            <small class="form-text text-muted">{{ form.username.help_text }}</small>
+        {% endif %}
+    </div>
+
+    <!-- Поле для имени -->
+    <div class="form-group">
+        <label for="id_first_name">Имя:</label>
+        {{ form.first_name }}
+        {% if form.first_name.help_text %}
+            <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
+        {% endif %}
+    </div>
+
+    <!-- Поле для фамилии -->
+    <div class="form-group">
+        <label for="id_last_name">Фамилия:</label>
+        {{ form.last_name }}
+        {% if form.last_name.help_text %}
+            <small class="form-text text-muted">{{ form.last_name.help_text }}</small>
+        {% endif %}
+    </div>
+
+    <!-- Поле для email -->
+    <div class="form-group">
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        {% if form.email.help_text %}
+            <small class="form-text text-muted">{{ form.email.help_text }}</small>
+        {% endif %}
+    </div>
+
+    <!-- Кнопка для отправки -->
+    <button type="submit" class="btn btn-primary">Обновить</button>
+</form>
+
+  <a href="{% url 'courses_app:profile' %}">Назад в профиль</a>
+{% endblock %}
