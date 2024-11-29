@@ -6,7 +6,7 @@ from .models import Course, Topic, AssignmentSubmission
 from django.shortcuts import redirect
 from django.contrib.auth import  login, logout
 from django.contrib.auth.forms import  AuthenticationForm
-from .forms import CustomUserCreationForm,CoursePasswordForm, AssignmentForm
+from .forms import CustomUserCreationForm,CoursePasswordForm, AssignmentForm,UpdateProfileForm
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 
@@ -34,14 +34,11 @@ def register_view(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Перенаправляем на страницу успешной регистрации
-            return redirect('courses_app:registration_success')
+            login(request, user)  # Авторизуем пользователя сразу после регистрации
+            return redirect('courses_app:profile')  # Перенаправляем в профиль
     else:
         form = CustomUserCreationForm()
     return render(request, 'courses_app/register.html', {'form': form})
-
-def registration_success_view(request):
-    return render(request, 'courses_app/registration_success.html')
 
 
 def logout_view(request):
@@ -49,7 +46,6 @@ def logout_view(request):
     return redirect('courses_app:login')  # Перенаправляем на страницу логина после выхода
 
 
-@login_required
 def course_detail(request, course_id):
     # Получаем курс по ID
     course = get_object_or_404(Course, id=course_id)
@@ -149,24 +145,31 @@ def topic_detail(request, course_id, topic_id):
 
 
 @login_required
+@login_required
 def assignment_view(request, course_id):
-    course = Course.objects.get(id=course_id)
+    course = get_object_or_404(Course, id=course_id)
 
-    # Просто отображаем страницу задания без проверки завершенности курса
     if request.method == 'POST':
-        form = AssignmentForm(request.POST)
+        assignment_url = request.POST.get('assignment_url')
+        if assignment_url:
+            # Обновляем поле link_work для текущего пользователя
+            request.user.link_work = assignment_url
+            request.user.save()
+            messages.success(request, 'Ссылка успешно отправлена!')
+            return redirect('courses_app:profile')  # Перенаправляем в профиль после сохранения
+
+    return render(request, 'courses_app/work.html', {'course': course})
+
+
+@login_required
+def update_profile_view(request):
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, instance=request.user)
         if form.is_valid():
-            # Сохраняем ссылку на тестовое задание
-            AssignmentSubmission.objects.create(
-                user=request.user,
-                assignment_url=form.cleaned_data['assignment_url']
-            )
-            return redirect('courses_app:profile')  # Перенаправляем на профиль после успешной отправки
+            form.save()
+            messages.success(request, 'Профиль успешно обновлен!')
+            return redirect('courses_app:profile')  # Перенаправление на страницу профиля
     else:
-        form = AssignmentForm()
+        form = UpdateProfileForm(instance=request.user)
 
-    return render(request, 'courses_app/work.html', {
-        'course': course,
-        'form': form
-    })
-
+    return render(request, 'courses_app/update_profile.html', {'form': form})

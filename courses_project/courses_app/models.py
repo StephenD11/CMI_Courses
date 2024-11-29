@@ -35,6 +35,12 @@ class CustomUser(AbstractUser):
         verbose_name='Роль'  # Название поля в админке
     )
 
+    link_work = models.CharField(
+        max_length=500,
+        default='',
+        verbose_name='Ссылка на работу'
+    )
+
     def __str__(self):
         return self.username  # При отображении пользователя выводится его имя (логин)
 

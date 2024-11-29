@@ -17,6 +17,5 @@ urlpatterns = [
     path('documents/', views.documents, name='documents'),
     path('profile/', views.profile_view, name='profile'),
     path('course/<int:course_id>/assignment/', views.assignment_view, name='assignment_view'),
-    path('registration_success/', views.registration_success_view, name='registration_success'),  # Новый URL для успеха регистрации
-
+    path('update_profile/', views.update_profile_view, name='update_profile'),
 ]

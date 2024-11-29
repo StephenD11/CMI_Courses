@@ -4,12 +4,11 @@
 
 {% block content %}
     <h1>Контрольная работа для курса: {{ course.title }}</h1>
-
-    <h3>Загрузите ваш проект на Яндекс.Диск,Google.Disk или в репозиторий Github</h3>
-    <h4>вставьте ссылку в поле и отправьте его на проверку</h4>
+    <h4>Пришлите ссылку на файл с вашим проектом</h4>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="assignment_url">Ссылка на тестовое задание:</label>
+        <input type="url" name="assignment_url" id="assignment_url" maxlength="500" required>
         <button type="submit">Отправить</button>
     </form>
 {% endblock %}

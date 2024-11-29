@@ -2,17 +2,26 @@
 
 
 {% block content %}
-  <h1>Профиль пользователя: {{ user.username }}</h1>
-  <p>Email: {{ user.email }}</p>
+  <h1>Профиль пользователя:</h1>
+  <p>Имя : {{ user.first_name }}</p>
+  <p>Фамилия : {{ user.last_name }}</p>
+  <p>Логин (для входа): {{ user.username}} </p>
+  <p>Email: {{ user.email }} </p>
   <p>Роль: {{ user.get_role_display }}</p>
 
-  <h2>Доступные курсы:</h2>
+<form method="get" action="{% url 'courses_app:update_profile' %}">
+    <button type="submit" class="btn btn-primary">Изменить свои данные</button>
+</form>
+
+<h2>Доступные курсы:</h2>
   <ul>
     {% for course in courses %}
-      <li>{{ course.title }}</li>
+      <li><a href="{% url 'courses_app:course_detail' course.id %}">{{ course.title }}</a></li>
     {% empty %}
       <li>Нет доступных курсов.</li>
     {% endfor %}
   </ul>
+
+
 
 {% endblock %}

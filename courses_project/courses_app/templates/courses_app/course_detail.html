@@ -7,7 +7,7 @@
   <p>{{ course.description }}</p>
 
   <!-- Проверка доступа по паролю -->
-  {% if password_valid and user.role == "student" %}
+  {% if password_valid and user.role == "student" or user.role == 'admin' %}
     <section class="topics">
       <h2>Темы курса:</h2>
       <h3>Теперь у вас есть доступ. Нажмите на тему, чтобы войти в нее</h3>
@@ -25,6 +25,7 @@
         {% endfor %}
       </ol>
         {% if course.id %}
+            <h4>По завершению курса вы можете отправить нам контролью работу по ссылке:</h4>
             <a href="{% url 'courses_app:assignment_view' course_id=course.id %}">Перейти к заданию</a>
         {% else %}
             <p>Курс не найден.</p>
