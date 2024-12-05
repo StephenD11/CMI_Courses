@@ -1,52 +1,32 @@
+{% extends 'courses_app/main.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Главная{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'courses_app/styles.css' %}">
-</head>
-<body>
+{% block content %}
 
-<header>
-    <div class="navbar">
-        <div class="nav-links">
-            <a href="{% url 'courses_app:index' %}" class="logo">Главная</a>
-            <a href="{% url 'courses_app:all_courses' %}">Каталог</a>
-            <a href="{% url 'courses_app:documents' %}">Документы</a>
-            <a href="{% url 'courses_app:contacts' %}">Контакты</a>
+<section class="main_section_place">
+    <section class="main-sector">
+        <div class="main-sector-text">
+            <p style="font-size:85px; margin-bottom: -35px; color: #000000"><b>Развивайте навыки</b></p>
+            <p style="font-size:40px; margin-bottom: -5px; color: #000000; " ><b>Создай будущее для своей карьеры</b></p>
+            <p style="font-size:22px;  max-width: 700px;">Начните, измените или продвигайте свою карьеру с нашими курсами, профессиональными сертификатами и дипломами от мировых экспертов и преподавателей!</p>
         </div>
-        {% if user.is_authenticated %}
-        <div class="nav-links-2">
-            <p>Вы вошли как: {{ user.username }}</p>
-            <button class="auth-button" onclick="window.location.href='{% url 'courses_app:profile' %}'">Профиль</button>
-            <button class="auth-button" onclick="window.location.href='{% url 'courses_app:logout' %}'">Выйти</button>
-        </div>
-        {% else %}
-        <div class="nav-links-2">
-            <a href="{% url 'courses_app:login' %}" class="auth-button">Вход</a>
-            <a href="{% url 'courses_app:register' %}" class="auth-button">Зарегистрироваться</a>
-        </div>
-        {% endif %}
-    </div>
-</header>
 
-<main>
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
-</main>
+        <div>
+            <img src="{% static 'images/reiting.png' %}" alt="Логотип" style="width: 250px; height: auto; margin:20px; margin-top:1px; margin-bottom: 20px;">
+        </div>
 
-<section>
-    {% if request.path == '/' %}
-    <button onclick="window.location.href='{% url 'courses_app:all_courses' %}'">Каталог курсов</button>
-    {% endif %}
+        <div>
+            {% if request.path == '/' %}
+                <a href="{% url 'courses_app:all_courses' %}" class="auth-button-catalog">Каталог курсов</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <section style="margin-bottom:50px; position: relative;top: 100px;">
+        <img src="{% static 'images/dev.png' %}" alt="Логотип" style="width: 550px; height: auto; ">
+    </section>
 </section>
 
-<footer>
-</footer>
 
-</body>
-</html>
+
+{% endblock %}

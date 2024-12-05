@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Главная{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'courses_app/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="nav-links">
+            <img src="{% static 'images/cmi_header_logo.png' %}" alt="Логотип" class="header_logo">
+            <a href="{% url 'courses_app:index' %}" class="color_link">Главная</a>
+            <a href="{% url 'courses_app:all_courses' %}" class="color_link">Каталог</a>
+            <a href="{% url 'courses_app:documents' %}" class="color_link">Документы</a>
+            <a href="{% url 'courses_app:contacts' %}" class="color_link">Контакты</a>
+        </div>
+
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+            <div>
+                <p style="font-size:18px">Вы вошли как: {{ user.username }}</p>
+            </div>
+            <div>
+                <a href="{% url 'courses_app:profile' %}" class="auth-button">Профиль</a>
+                <a href="{% url 'courses_app:logout' %}" class="auth-button">Выйти</a>
+            </div>
+            {% else %}
+            <div class="nav-links">
+                <a href="{% url 'courses_app:login' %}" class="auth-button">Вход</a>
+                <a href="{% url 'courses_app:register' %}" class="auth-button">Зарегистрироваться</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+<footer>
+    <div class="footer_logo">
+        <img src="{% static 'images/1.png' %}" alt="Логотип">
+        <img src="{% static 'images/2.png' %}" alt="Логотип">
+        <img src="{% static 'images/3.png' %}" alt="Логотип">
+        <img src="{% static 'images/4.png' %}" alt="Логотип">
+    </div>
+
+</footer>
+
+</body>
+</html>

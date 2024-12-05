@@ -1,15 +1,49 @@
-/* Основные стили для всей страницы */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    color: #333;
+
+    /* Фон изображения */
+    background-image: url("/static/images/background.png");
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Убираем повторение изображения */
+    background-size: cover; /* Изображение заполняет весь экран */
+    background-attachment: fixed; /* Фон не двигается при прокрутке */
+
+    /* Цвет фона, если изображение не загружено */
+    background-color: #f4f4f9;
+}
+
+
 header {
-    background-color: #333;
-    color: #fff;
     padding: 10px 0;
 }
 
@@ -17,9 +51,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 10px;
+    color: #333;
 }
 
 .navbar .logo {
@@ -28,118 +63,127 @@ header {
     text-decoration: none;
 }
 
-.navbar .nav-links {
+.nav-links {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-}
-
-.nav-links-2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
-}
-
-.navbar .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-/* Стиль для кнопок входа и регистрации */
-.auth-button, .login-button {
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    margin: 0 10px;
-    font-size: 16px;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    border: none;
-}
-
-.auth-button:hover, .login-button:hover {
-    background-color: #0056b3;
-}
-
-/* Стиль для секции курсов */
-.courses {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.courses h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.courses ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.courses ul li {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.courses ul li a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 18px;
-}
-
-.courses ul li a:hover {
-    text-decoration: underline;
-}
-
-.courses p {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
-}
-
-/* Стиль для информации о пользователе */
-nav p {
-    margin-right: 20px;
-    font-size: 16px;
     color: #333;
 }
 
 
-
-/* Уведомление */
-.notification {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 128, 0, 0.8); /* Зеленый фон с прозрачностью */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    display: none; /* Изначально скрыто */
+/* Общие стили для всех ссылок */
+.nav-links a {
+    text-decoration: none;
+    font-size: 18px;
 }
 
-.close-notification {
+.color_link {
+    color: #333;
+    position: relative; /* Для псевдоэлемента */
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    padding-bottom: 5px; /* Резервируем место для линии */
+    transition: all 0.3s ease;
+}
+
+.color_link::after {
+    content: ''; /* Создаем линию */
     position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
+    left: 0;
+    bottom: 0; /* Линия в зарезервированном пространстве */
+    width: 100%;
+    height: 1px; /* Толщина линии */
+    background-color: #333; /* Цвет подчеркивания */
+    transform: scaleX(0); /* Линия скрыта */
+    transform-origin: left; /* Анимация начинается слева */
+    transition: transform 0.3s ease; /* Анимация появления линии */
 }
+
+.color_link:hover::after {
+    transform: scaleX(1); /* Показываем линию при наведении */
+}
+
+.auth-button, .login-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4c63f0;
+    padding: 8px 16px;
+    border-radius: 1px;
+    margin: 0 10px;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    transition: background-color 0.3s ease; /* Для плавного перехода */
+}
+
+.auth-button:hover, .login-button:hover {
+    background-color: #3242bd; /* Новый цвет фона */
+    color: #f0f0f0; /* Новый цвет текста */
+}
+
+.auth-button-catalog {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4c63f0;
+    padding: 8px 16px;
+    border-radius: 15px;
+    margin: 0 20px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    transition: background-color 0.3s ease; /* Для плавного перехода */
+}
+
+.auth-button-catalog:hover, .login-button:hover {
+    background-color: #3242bd; /* Новый цвет фона */
+    color: #f0f0f0; /* Новый цвет текста */
+}
+
+
+.header_logo {
+    width: 145px;
+    height: auto;
+}
+
+
+.footer_logo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    gap: 250px;
+}
+
+.footer_logo img {
+    width: 200px;
+    height: auto;
+}
+
+.main-sector {
+   display: flex;
+   flex-direction: column;
+   max-width: 1200px;
+   margin-top: 100px;
+}
+
+.main-sector-text {
+    font-size:55px;
+    max-width: 1200px;
+}
+
+.main_section_place {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center; /* Центрируем элементы по вертикали */
+    margin-bottom: 20px;
+
+}
+
+
