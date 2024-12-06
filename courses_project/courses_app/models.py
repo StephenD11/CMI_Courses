@@ -17,7 +17,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(
         max_length=150,
         unique=True,
-        help_text='Введите имя пользователя [150 символов или меньше]',
+        help_text='Введите имя пользователя',
         error_messages={'unique': "Такое имя уже существует, выбирете другое"},
         verbose_name='Логин'
     )

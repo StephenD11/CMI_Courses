@@ -9,6 +9,7 @@ from django.contrib.auth.forms import  AuthenticationForm
 from .forms import CustomUserCreationForm,CoursePasswordForm, AssignmentForm,UpdateProfileForm
 from django.contrib import messages
 from django.http import HttpResponseForbidden
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
@@ -22,8 +23,14 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            next_url = request.GET.get('next', '/')  # Перенаправление после логина
+            next_url = request.GET.get('next', reverse('courses_app:profile'))  # Использование пространства имен
             return redirect(next_url)
+        else:
+            # Если форма не прошла валидацию, передаем ошибку
+            return render(request, 'courses_app/login.html', {
+                'form': form,
+                'error': 'Неверные логин или пароль!'
+            })
     else:
         form = AuthenticationForm()
     return render(request, 'courses_app/login.html', {'form': form})

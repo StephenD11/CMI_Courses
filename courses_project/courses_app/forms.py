@@ -2,19 +2,32 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
         help_texts = {
-            'username': 'Придумайте уникальное имя пользователя.',
-            'first_name': 'Введите ваше имя.',
-            'last_name': 'Введите вашу фамилию.',
-            'email': 'Укажите действующий адрес электронной почты.',
-            'password1': 'Придумайте надежный пароль (минимум 8 символов).',
-            'password2': 'Повторите пароль для подтверждения.',
+            'username': '',
+            'first_name': '',
+            'last_name': '',
+            'email': '',
+            'password1': '',
+            'password2': '',
         }
 
+    # Переопределение полей пароля с пустыми подсказками
+    password1 = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput,
+        help_text='',  # Убираем подсказку
+    )
+
+    password2 = forms.CharField(
+        label="Подтвердите пароль",
+        widget=forms.PasswordInput,
+        help_text='',  # Убираем подсказку
+    )
 
 
 class CoursePasswordForm(forms.Form):

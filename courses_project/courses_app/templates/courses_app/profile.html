@@ -1,27 +1,57 @@
 {% extends 'courses_app/main.html' %}
-
+{% load static %}
 
 {% block content %}
-  <h1>Профиль пользователя:</h1>
-  <p>Имя : {{ user.first_name }}</p>
-  <p>Фамилия : {{ user.last_name }}</p>
-  <p>Логин (для входа): {{ user.username}} </p>
-  <p>Email: {{ user.email }} </p>
-  <p>Роль: {{ user.get_role_display }}</p>
+<div style="display:flex;flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -90px;">
+    <h1>ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ</h1>
+</div>
 
-<form method="get" action="{% url 'courses_app:update_profile' %}">
-    <button type="submit" class="btn btn-primary">Изменить свои данные</button>
-</form>
+<section class="two-column-container">
+    <!-- Левая колонка -->
+    <div>
+        <img src="{% static 'images/acc.png' %}" alt="Логотип" style="width:255px; border-radius:15px;">
+    </div>
 
-<h2>Доступные курсы:</h2>
-  <ul>
-    {% for course in courses %}
-      <li><a href="{% url 'courses_app:course_detail' course.id %}">{{ course.title }}</a></li>
-    {% empty %}
-      <li>Нет доступных курсов.</li>
-    {% endfor %}
-  </ul>
+    <!-- Правая колонка -->
+        <div class="right-column" style="border-radius:15px; background: linear-gradient(to top, #ffffff, #f2f2f2);; width:800px; padding:0px;">
+        <div class="form-to-login styled-profile" style=" bottom:0px; left: -100px;">
+            <p><b class="profile-label">Логин:</b> <span class="profile-value">{{ user.username }}</span></p>
+            <p><b class="profile-label">Email:</b> <span class="profile-value">{{ user.email|upper }}</span></p>
+            <p><b class="profile-label">Имя:</b> <span class="profile-value">{{ user.first_name|upper }}</span></p>
+            <p><b class="profile-label">Фамилия:</b> <span class="profile-value">{{ user.last_name|upper }}</span></p>
+            <p><b class="profile-label">Роль:</b> <span class="profile-value">{{ user.get_role_display|upper }}</span></p>
+        </div>
+    </div>
 
+    <div class="" style="border-radius:15px;
+                     background: linear-gradient(to bottom, #284ad0, #3e63f4);
+                     justify-content: center;
+                     width: 230px;">
+        <div>
+            <h2 style="color:#ffffff; text-decoration: none; font-size:18px; margin-top:20px">ДОСТУПНЫЕ КУРСЫ</h2>
+            <ul style="list-style: circle; color: #ffffff;">
+                {% for course in courses %}
+                <li><a href="{% url 'courses_app:course_detail' course.id %}"
+                       style="color:#ffffff; text-decoration: none; font-size:20px;">{{ course.title }}</a></li>
+                {% empty %}
+                <li>Нет доступных курсов.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+<section style="display:flex;align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 130px;
+    font-size: 25px;">
+    <form method="get" action="{% url 'courses_app:update_profile' %}">
+        <button type="submit" class="submit-button">Изменить свои данные</button>
+    </form>
+</section>
 
 
 {% endblock %}

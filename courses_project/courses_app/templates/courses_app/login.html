@@ -1,23 +1,45 @@
 {% extends 'courses_app/main.html' %}
-
+{% load static %}
 {% block title %}Логин{% endblock %}
-
 
 {% block content %}
 
-<section class="login-form">
-    <h2>Введите данные для входа</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Выводим поля формы -->
-        <button type="submit">Войти</button>
-    </form>
+<section class="two-column-container">
+    <!-- Левая колонка -->
+    <div>
+        <img src="{% static 'images/login.png' %}" alt="Логотип" style="border-radius: 25px; width:350px;">
+    </div>
 
-    <!-- Если ошибка, выводим сообщение -->
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+    <!-- Правая колонка -->
+    <div class="right-column">
+        <div class="form-to-login">
+            <h2>ВОЙТИ В АККАУНТ</h2>
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- Поле для имени пользователя -->
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">ЛОГИН</label>
+                    {{ form.username }}
+                </div>
+
+                <!-- Поле для пароля -->
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}">ПАРОЛЬ</label>
+                    {{ form.password }}
+                </div>
+
+                <!-- Кнопка отправки -->
+                <button type="submit" class="submit-button">Войти</button>
+            </form>
+
+            {% if error %}
+            <p style="color: red; display: flex; justify-content: center;">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
 </section>
+
 {% endblock %}
 

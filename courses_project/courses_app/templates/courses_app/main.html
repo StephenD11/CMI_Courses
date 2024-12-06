@@ -28,7 +28,7 @@
         <div class="nav-links">
             {% if user.is_authenticated %}
             <div>
-                <p style="font-size:18px">Вы вошли как: {{ user.username }}</p>
+                <p style="font-size:18px">Вы вошли как: <b>{{ user.username }}</b></p>
             </div>
             <div>
                 <a href="{% url 'courses_app:profile' %}" class="auth-button">Профиль</a>
@@ -37,8 +37,10 @@
             {% else %}
             <div class="nav-links">
                 <a href="{% url 'courses_app:login' %}" class="auth-button">Вход</a>
-                <a href="{% url 'courses_app:register' %}" class="auth-button">Зарегистрироваться</a>
+                <span class="separator"></span> <!-- Линия -->
+                <a href="{% url 'courses_app:register' %}" class="auth-button">Регистрация</a>
             </div>
+
             {% endif %}
         </div>
     </div>

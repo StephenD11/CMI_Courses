@@ -69,13 +69,20 @@ header {
     justify-content: center;
     gap: 20px;
     color: #333;
-}
 
+
+}
+.separator {
+    width: 1px; /* Толщина линии */
+    height: 20px; /* Высота линии */
+    background-color: #797979; /* Цвет линии */
+}
 
 /* Общие стили для всех ссылок */
 .nav-links a {
     text-decoration: none;
     font-size: 18px;
+    border-radius: 15px; /* Углы закруглены на 15px */
 }
 
 .color_link {
@@ -129,7 +136,6 @@ header {
     background-color: #4c63f0;
     padding: 8px 16px;
     border-radius: 15px;
-    margin: 0 20px;
     font-size: 18px;
     cursor: pointer;
     display: inline-block;
@@ -183,7 +189,199 @@ header {
     flex-direction: row-reverse;
     justify-content: center; /* Центрируем элементы по вертикали */
     margin-bottom: 20px;
+    position: relative;
+    bottom: 20px;
 
 }
+
+.all-reg-place {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    gap:100px;
+}
+
+.two-column-container {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+
+}
+
+.two-column-container-reg {
+    display: flex;
+    width: 600px;
+    position: relative;
+    background: #ffffff;
+    padding: 30px;
+    flex-direction: column;
+    max-width: 400px;
+    border-radius: 15px;
+}
+
+.two-column-container-reg-place {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    top: 10px;
+
+}
+
+.submit-button-reg {
+    width: 100%;
+    padding: 10px;
+    background-color: #3e63f4;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+
+.submit-button-reg:hover {
+    background-color: #0056b3;
+}
+
+/* Блок с информацией профиля */
+.styled-profile {
+    padding: 20px;
+    color: #333;
+}
+
+/* Заголовки для полей профиля */
+.profile-label {
+    font-size: 22px;
+    color: #3e63f4;
+    text-transform: uppercase; /* Все буквы заглавные */
+    border-bottom: 1px solid #ccc; /* Подчеркивание */
+    display: inline-block;
+
+}
+
+/* Значения полей профиля */
+.profile-value {
+    font-size: 22px;
+    color: #555;
+    margin-left: 10px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3e63f4;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.left-column {
+    width: 400px; /* Левая колонка занимает половину ширины */
+    background-color: #ccc; /* Серый фон */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Центрирование содержимого */
+    height: 500px;
+    border-radius: 15px; /* Углы закруглены на 15px */
+}
+
+.left-column img {
+    max-width: 80%; /* Логотип адаптируется к размеру колонки */
+    height: auto;
+}
+
+.right-column-login {
+    width: 200px; /* Правая колонка занимает вторую половину */
+    background-color: #fff; /* Белый фон */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем форму по вертикали */
+    align-items: center; /* Центрируем форму по горизонтали */
+    padding: 20px;
+    border-radius: 15px; /* Углы закруглены на 15px */
+}
+
+.right-column {
+    width: 600px; /* Правая колонка занимает вторую половину */
+    background-color: #fff; /* Белый фон */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем форму по вертикали */
+    align-items: center; /* Центрируем форму по горизонтали */
+    padding: 20px;
+    border-radius: 15px; /* Углы закруглены на 15px */
+}
+
+
+
+h2 {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+
+}
+
+.form-group label {
+
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-weight: 300; /* Тонкий шрифт */
+    justify-content: center;
+}
+
+.form-to-login {
+    display: flex;
+    flex-direction: column;
+    bottom: 15px;
+    width: 60%; /* Установить ширину как процент от родительского контейнера */
+    max-width: 600px; /* Ограничить максимальную ширину */
+    margin: 0 auto; /* Центрировать элемент в родительском контейнере */
+}
+
+
+
+.form-group input {
+    width: 100%;
+    height: 40px; /* Задаем высоту для удобства центрирования */
+    padding: 0; /* Убираем внутренние отступы */
+    border: none; /* Убираем рамку */
+    border-bottom: 1px solid #ccc; /* Добавляем нижнюю границу */
+    outline: none; /* Убираем подсветку при фокусе */
+    background-color: transparent; /* Делаем фон прозрачным */
+    font-size: 16px; /* Регулируем размер текста */
+    color: #333; /* Цвет текста */
+    text-align: center; /* Центрируем текст по горизонтали */
+    line-height: 40px; /* Центрируем текст по вертикали (должно совпадать с высотой) */
+    transition: border-color 0.3s ease; /* Анимация для границы */
+}
+}
+
+.form-group input:focus {
+    border-bottom: 2px solid #007BFF; /* Меняем цвет границы при фокусе */
 
 
