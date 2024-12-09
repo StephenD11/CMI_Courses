@@ -4,7 +4,7 @@ from .models import CustomUser, Course, Topic, Question,Answer,AssignmentSubmiss
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description')  # Указываем, какие поля курса отображать в админке
+    list_display = ('title', 'description', 'id')  # Указываем, какие поля курса отображать в админке
 
 
 @admin.register(Topic)

@@ -2,55 +2,82 @@
 {% load static %}
 
 {% block content %}
-<div style="display:flex;flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: -90px;">
-    <h1>ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ</h1>
-</div>
 
-<section class="two-column-container">
-    <!-- Левая колонка -->
-    <div>
-        <img src="{% static 'images/acc.png' %}" alt="Логотип" style="width:255px; border-radius:15px;">
+
+<section class="profile-main-page">
+
+    <div style="display:flex; padding-bottom: 25px; padding-top: 25px;">
+        <img src="{% static 'images/line-1.png' %}" alt="Логотип"
+             style="border-radius: 25px; width:950px; padding-top: 25px; ">
     </div>
 
-    <!-- Правая колонка -->
-        <div class="right-column" style="border-radius:15px; background: linear-gradient(to top, #ffffff, #f2f2f2);; width:800px; padding:0px;">
-        <div class="form-to-login styled-profile" style=" bottom:0px; left: -100px;">
-            <p><b class="profile-label">Логин:</b> <span class="profile-value">{{ user.username }}</span></p>
-            <p><b class="profile-label">Email:</b> <span class="profile-value">{{ user.email|upper }}</span></p>
-            <p><b class="profile-label">Имя:</b> <span class="profile-value">{{ user.first_name|upper }}</span></p>
-            <p><b class="profile-label">Фамилия:</b> <span class="profile-value">{{ user.last_name|upper }}</span></p>
-            <p><b class="profile-label">Роль:</b> <span class="profile-value">{{ user.get_role_display|upper }}</span></p>
+
+    <section style="display:flex; gap:25px; padding-bottom: 25px;">
+        <div class="profile-first">
+            <div>
+                <p><span class="profile-label">Логин:</span> <span class="profile-value">{{ user.username }}</span></p>
+            </div>
         </div>
-    </div>
+        <div class="profile-first">
+            <div>
+                <p><span class="profile-label">Email:</span> <span class="profile-value">{{ user.email }}</span></p>
+            </div>
+        </div>
+        <div class="profile-first">
+            <div>
+                <p><span class="profile-label">Роль:</span> <span
+                        class="profile-value">{{ user.get_role_display }}</span></p>
+            </div>
+        </div>
+    </section>
 
-    <div class="" style="border-radius:15px;
-                     background: linear-gradient(to bottom, #284ad0, #3e63f4);
-                     justify-content: center;
-                     width: 230px;">
+
+    <section style="display:flex; gap:25px; padding-bottom: 25px;">
+        <div class="profile-first">
+            <div>
+                <p><span class="profile-label">Имя:</span> <span class="profile-value">{{ user.first_name }}</span></p>
+            </div>
+        </div>
+        <div class="profile-first">
+            <div>
+                <p><span class="profile-label">Фамилия:</span> <span class="profile-value">{{ user.last_name }}</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <form method="get" action="{% url 'courses_app:update_profile' %}">
+            <button
+                    type="submit"
+                    class="submit-button"
+                    style="font-size: 16px; max-width: 700px;  background: #004466;"
+                    onmouseover="this.style.background='#002335'"
+                    onmouseout="this.style.background='#004466'">
+                Редактировать профиль
+            </button>
+        </form>
+    </section>
+
+
+    <section style="display: flex; gap: 75px; padding-top:25px;">
         <div>
-            <h2 style="color:#ffffff; text-decoration: none; font-size:18px; margin-top:20px">ДОСТУПНЫЕ КУРСЫ</h2>
-            <ul style="list-style: circle; color: #ffffff;">
+            <h2 style="font-size: 25px;">ДОСТУПНЫЕ КУРСЫ</h2>
+            <ul style="display: flex; gap: 75px; padding-top:25px;s">
                 {% for course in courses %}
-                <li><a href="{% url 'courses_app:course_detail' course.id %}"
-                       style="color:#ffffff; text-decoration: none; font-size:20px;">{{ course.title }}</a></li>
+                <li style="min-width: 30px; ">
+                    <b> <a href="{% url 'courses_app:course_detail' course.id %}" class="color_link"
+                           style="white-space: nowrap; font-size:15px; color: #4c63f0;">{{ course.title }}</a></b>
+                </li>
                 {% empty %}
                 <li>Нет доступных курсов.</li>
                 {% endfor %}
             </ul>
         </div>
-    </div>
-</section>
-<section style="display:flex;align-content: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 130px;
-    font-size: 25px;">
-    <form method="get" action="{% url 'courses_app:update_profile' %}">
-        <button type="submit" class="submit-button">Изменить свои данные</button>
-    </form>
+    </section>
+
+
 </section>
 
 

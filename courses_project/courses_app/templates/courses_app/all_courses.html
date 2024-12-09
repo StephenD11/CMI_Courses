@@ -1,15 +1,25 @@
 {% extends 'courses_app/main.html' %}
 {% block title %}Каталог курсов{% endblock %}
-
+{% load static %}
 {% block content %}
 
 <section class="courses">
-    <h2>Каталог курсов</h2>
+    <h2 style="font-size:35px;">Каталог курсов</h2>
     {% if courses %}
-    <ul>
+    <ul class="course-list">
         {% for course in courses %}
-        <li>
-            <a href="{% url 'courses_app:course_detail' course.id %}">{{ course.title }}</a>
+        <li class="course-item">
+            <a href="{% url 'courses_app:course_detail' course.id %}">
+                {% if course.title == "Python: Начинающий" %}
+                    <img src="{% static 'images/gal1.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "SQL" %}
+                    <img src="{% static 'images/gal2.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "Python: Продвинутый" %}
+                    <img src="{% static 'images/gal3.png' %}" alt="{{ course.title }}" class="course-image">
+                {% else %}
+                    <img src="{% static 'images/default-course.png' %}" alt="{{ course.title }}" class="course-image">
+                {% endif %}
+            </a>
         </li>
         {% endfor %}
     </ul>
@@ -17,5 +27,7 @@
     <p>Курсы пока не добавлены.</p>
     {% endif %}
 </section>
+
+
 
 {% endblock %}
