@@ -440,6 +440,8 @@ h2 {
     box-sizing: border-box; /* Учитываем отступы в ширине */
     max-width: 130px;  /* Устанавливаем максимальную ширину, чтобы элементы не были слишком большими */
     min-width: 200px;  /* Минимальная ширина для лучшей адаптивности */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+    border-radius: 15px;
 }
 
 /* Стиль для картинки курса */
@@ -454,4 +456,104 @@ h2 {
 .course-item:hover .course-image {
     transform: scale(1.1); /* Увеличиваем изображение */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);  /* Добавляем тень */
+}
+
+.main-prof {
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 650px;
+    flex-direction: column;
+    align-items: center;
+    height:750px;
+
+
+}
+
+.main-prof-first {
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 0 20px;
+    height: 215px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-prof-second {
+
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);  /* Добавляем тень */
+    margin-left: -10px; /* Расширяем фон влево */
+    margin-right: -10px; /* Расширяем фон вправо */
+    padding: 0 20px; /* Добавляем внутренние отступы */
+    height:95px;
+    width: 450px;
+
+}
+
+.main-prof-right {
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    flex-direction: column;
+    align-items: center;
+    height:730px;
+}
+.final-prof {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+
+}
+
+.main-update-prof {
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    height: 480px;
+    gap: 100px;
+    justify-content: center;
+}
+
+.main-update-prof {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.form-columns {
+    display: flex;
+    gap: 20px; /* Расстояние между колонками */
+    justify-content: center;
+    max-width: 800px; /* Ограничение по ширине */
+    width: 100%; /* Заполняет доступное пространство */
+}
+
+.form-column {
+    flex: 1; /* Колонки занимают равное место */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между полями */
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.courses {
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+    margin: auto;
 }

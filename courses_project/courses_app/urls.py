@@ -18,4 +18,5 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('course/<int:course_id>/assignment/', views.assignment_view, name='assignment_view'),
     path('update_profile/', views.update_profile_view, name='update_profile'),
+
 ]

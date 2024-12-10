@@ -11,23 +11,33 @@
         <li class="course-item">
             <a href="{% url 'courses_app:course_detail' course.id %}">
                 {% if course.title == "Python: Начинающий" %}
-                    <img src="{% static 'images/gal1.png' %}" alt="{{ course.title }}" class="course-image">
+                <img src="{% static 'images/gal1.png' %}" alt="{{ course.title }}" class="course-image">
                 {% elif course.title == "SQL" %}
-                    <img src="{% static 'images/gal2.png' %}" alt="{{ course.title }}" class="course-image">
+                <img src="{% static 'images/gal2.png' %}" alt="{{ course.title }}" class="course-image">
                 {% elif course.title == "Python: Продвинутый" %}
-                    <img src="{% static 'images/gal3.png' %}" alt="{{ course.title }}" class="course-image">
+                <img src="{% static 'images/gal3.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "HTML & CSS" %}
+                <img src="{% static 'images/gal4.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "Java Script" %}
+                <img src="{% static 'images/gal5.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "Python: ООП" %}
+                <img src="{% static 'images/gal6.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "Java: Начинающий" %}
+                <img src="{% static 'images/gal7.png' %}" alt="{{ course.title }}" class="course-image">
+                {% elif course.title == "Java: Продвинутый" %}
+                <img src="{% static 'images/gal8.png' %}" alt="{{ course.title }}" class="course-image">
                 {% else %}
-                    <img src="{% static 'images/default-course.png' %}" alt="{{ course.title }}" class="course-image">
+                <img src="{% static 'images/default-course.png' %}" alt="{{ course.title }}" class="course-image">
                 {% endif %}
             </a>
         </li>
         {% endfor %}
     </ul>
+
     {% else %}
     <p>Курсы пока не добавлены.</p>
     {% endif %}
 </section>
-
 
 
 {% endblock %}

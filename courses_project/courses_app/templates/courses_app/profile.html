@@ -4,81 +4,98 @@
 {% block content %}
 
 
-<section class="profile-main-page">
+<!--Общая часть-->
+<section class="final-prof">
+    <section style="display:flex;flex-direction: column;">
+        <img src="{% static 'images/tab-12.png' %}" alt="Логотип"
+             style="border-radius: 25px; width:180px; margin-top:40px; margin-right:40px;">
+        <img src="{% static 'images/tab-13.png' %}" alt="Логотип"
+             style="border-radius: 25px; width:180px; margin-top:20px; margin-right:40px;">
+    </section>
 
-    <div style="display:flex; padding-bottom: 25px; padding-top: 25px;">
-        <img src="{% static 'images/line-1.png' %}" alt="Логотип"
-             style="border-radius: 25px; width:950px; padding-top: 25px; ">
+
+    <section class="main-prof">
+        <!--Первая часть-->
+        <div>
+            <p style="font-size:22px;">Мой Профиль</p>
+            <div style="display: flex; margin-right: 20px;">
+                <div>
+                    <img src="{% static 'images/acc.png' %}" alt="Логотип" style=" width:215px;">
+                </div>
+
+                <div class="main-prof-first">
+                    <p><b style="font-size:18px;">{{ user.first_name }} {{ user.last_name }}</b></p>
+                    <p><b style="color:#3e63f4;">Логин:</b> <span>{{ user.username }}</span></p>
+                    <p><b style="color:#3e63f4;">Роль:</b> <span>{{ user.role }}</span></p>
+                    <p><span>{{ user.email }}</span></p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p style="font-size:22px;">Мои данные</p>
+            <div class="main-prof-second">
+
+
+                <div style="display: flex; margin-right: 20px; gap:55px;">
+                    <div>
+                        <p><b style="color:#3e63f4;">Имя:</b> <span>{{ user.first_name }}</span></p>
+                        <p><b style="color:#3e63f4;">Фамилия:</b> <span>{{ user.last_name }}</span></p>
+                    </div>
+                    <div>
+                        <p><b style="color:#3e63f4;">Отчество:</b> <span>{{ user.mid_name }}</span></p>
+                        <p><b style="color:#3e63f4;">Роль:</b> <span>{{ user.role }}</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="margin-bottom:45px;">
+            <p style="font-size:22px;">Контакты</p>
+            <div class="main-prof-second">
+                <div style="display: flex; margin-right: 20px; gap:75px;">
+                    <div>
+                        <p><b style="color:#3e63f4;">Город:</b> <span>{{ user.city }}</span></p>
+                        <p><b style="color:#3e63f4;">Адрес:</b> <span>{{ user.address }}</span></p>
+                    </div>
+                    <div>
+                        <p><b style="color:#3e63f4;">Индекс:</b> <span>{{ user.index }}</span></p>
+                        <p><b style="color:#3e63f4;">Телефон:</b> <span>{{ user.phone }}</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <section>
+            <form method="get" action="{% url 'courses_app:update_profile' %}">
+                <button
+                        type="submit"
+                        class="submit-button"
+                        style="font-size: 16px; max-width: 700px;  background: #3e63f4;"
+                        onmouseover="this.style.background='#002335'"
+                        onmouseout="this.style.background='#3e63f4'">
+                    Редактировать профиль
+                </button>
+            </form>
+        </section>
+
+
+    </section>
+
+
+    <div>
+        <p style="font-size: 25px; margin-left:40px; max-width:25px;">ДОСТУПНЫЕ КУРСЫ</p>
+        <ul>
+            {% for course in courses %}
+            <li style="display: flex; margin-right: 20px; margin-bottom: 20px;">
+                <b><a href="{% url 'courses_app:course_detail' course.id %}" class="color_link"
+                      style="white-space: nowrap; font-size: 15px; color: #4c63f0;">{{ course.title }}</a></b>
+            </li>
+            {% empty %}
+            <li>Нет доступных курсов.</li>
+            {% endfor %}
+        </ul>
     </div>
 
-
-    <section style="display:flex; gap:25px; padding-bottom: 25px;">
-        <div class="profile-first">
-            <div>
-                <p><span class="profile-label">Логин:</span> <span class="profile-value">{{ user.username }}</span></p>
-            </div>
-        </div>
-        <div class="profile-first">
-            <div>
-                <p><span class="profile-label">Email:</span> <span class="profile-value">{{ user.email }}</span></p>
-            </div>
-        </div>
-        <div class="profile-first">
-            <div>
-                <p><span class="profile-label">Роль:</span> <span
-                        class="profile-value">{{ user.get_role_display }}</span></p>
-            </div>
-        </div>
-    </section>
-
-
-    <section style="display:flex; gap:25px; padding-bottom: 25px;">
-        <div class="profile-first">
-            <div>
-                <p><span class="profile-label">Имя:</span> <span class="profile-value">{{ user.first_name }}</span></p>
-            </div>
-        </div>
-        <div class="profile-first">
-            <div>
-                <p><span class="profile-label">Фамилия:</span> <span class="profile-value">{{ user.last_name }}</span>
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <section>
-        <form method="get" action="{% url 'courses_app:update_profile' %}">
-            <button
-                    type="submit"
-                    class="submit-button"
-                    style="font-size: 16px; max-width: 700px;  background: #004466;"
-                    onmouseover="this.style.background='#002335'"
-                    onmouseout="this.style.background='#004466'">
-                Редактировать профиль
-            </button>
-        </form>
-    </section>
-
-
-    <section style="display: flex; gap: 75px; padding-top:25px;">
-        <div>
-            <h2 style="font-size: 25px;">ДОСТУПНЫЕ КУРСЫ</h2>
-            <ul style="display: flex; gap: 75px; padding-top:25px;s">
-                {% for course in courses %}
-                <li style="min-width: 30px; ">
-                    <b> <a href="{% url 'courses_app:course_detail' course.id %}" class="color_link"
-                           style="white-space: nowrap; font-size:15px; color: #4c63f0;">{{ course.title }}</a></b>
-                </li>
-                {% empty %}
-                <li>Нет доступных курсов.</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
-
-
 </section>
-
 
 {% endblock %}

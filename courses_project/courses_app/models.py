@@ -12,6 +12,16 @@ class CustomUser(AbstractUser):
         ('user', 'User'),  # Обычный пользователь
     ]
 
+    LEARN_CHOICES = [
+        ('python1', 'Python:Начинающий'),  # Администратор
+        ('python2', 'Python:Продвинутый'),  # Администратор
+        ('java1', 'Java:Начинающий'),  # Обучающийся
+        ('java2', 'Java:Продвинутый'),  # Обучающийся
+        ('sql', 'SQL'),  # Обычный пользователь
+        ('js', 'JS'),  # Обычный пользователь
+        ('html', 'HTML/CSS'),  # Обычный пользователь
+    ]
+
     # Поле для логина пользователя, должно быть уникальным
     # Здесь используется валидация, чтобы имя пользователя соответствовало слагу (т.е. только буквы, цифры и дефисы)
     username = models.CharField(
@@ -40,6 +50,41 @@ class CustomUser(AbstractUser):
         default='',
         verbose_name='Ссылка на работу'
     )
+
+    mid_name = models.CharField(default='Неизвестно', max_length=100,verbose_name='Отчество', blank=True)
+    phone = models.CharField(default='Неизвестно', max_length=100,verbose_name='Телефон', blank=True)
+    learn = models.CharField(
+        default='Нет курса',
+
+        max_length=100,
+        verbose_name='Направление',
+        blank=True,
+        choices=LEARN_CHOICES,  # Ограничиваем выбор только этими тремя значениями
+    )
+
+
+    date_in = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name="Дата зачисления"
+    )
+
+    date_out = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name="Дата окончания"
+    )
+
+    date_pay = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name="Дата оплаты"
+    )
+
+    city = models.CharField(default='Неизвестно', max_length=50,verbose_name='Город', blank=True)
+    address = models.CharField(default='Неизвестно', max_length=50,verbose_name='Адрес', blank=True)
+    index = models.CharField(default='Неизвестно', max_length=50,verbose_name='Индекс', blank=True)
+
 
     def __str__(self):
         return self.username  # При отображении пользователя выводится его имя (логин)

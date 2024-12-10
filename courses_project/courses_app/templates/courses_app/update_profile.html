@@ -2,51 +2,71 @@
 
 {% block content %}
 
+<p style="color: #4c63f0; display: flex; justify-content: center;  font-size:30px;"><b>Обновление профиля</b></p>
+<p style="color: #4c63f0; display: flex; justify-content: center;margin-top:-15px;">для редактирования нажмите на поле</p>
 
-
- <section class="update-profile">
-    <h1 style="color: #4c63f0;">Обновление профиля</h1>
+<section class="main-update-prof">
     <form method="post">
         {% csrf_token %}
 
-        <!-- Поле для имени пользователя -->
-        <div class="form-group">
-            {{ form.username.label_tag }} <!-- Метка поля -->
-            {{ form.username }} <!-- Само поле -->
-        </div>
+        <!-- Контейнер для двух колонок -->
+        <div class="form-columns">
+            <!-- Первая колонка -->
+            <div class="form-column">
+                <div class="form-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.city.label_tag }}
+                    {{ form.city }}
+                </div>
+            </div>
 
-        <!-- Поле для email -->
-        <div class="form-group">
-            {{ form.email.label_tag }}
-            {{ form.email }}
-            {% if form.email.help_text %}
-            <small class="form-text text-muted">{{ form.email.help_text }}</small>
-            {% endif %}
-        </div>
+            <!-- Вторая колонка -->
+            <div class="form-column">
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.address.label_tag }}
+                    {{ form.address }}
+                </div>
+            </div>
 
-        <!-- Поля для пароля -->
-        <div class="form-group">
-            {{ form.first_name.label_tag }}
-            {{ form.first_name }}
-            {% if form.first_name.help_text %}
-            <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
-            {% endif %}
-        </div>
-        <div class="form-group">
-            {{ form.last_name.label_tag }}
-            {{ form.last_name }}
-            {% if form.last_name.help_text %}
-            <small>{{ form.last_name.help_text }}</small>
-            {% endif %}
+            <!-- Третья колонка -->
+            <div class="form-column">
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                </div>
+                <div class="form-group">
+                    {{ form.mid_name.label_tag }}
+                    {{ form.mid_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.index.label_tag }}
+                    {{ form.index }}
+                </div>
+            </div>
         </div>
 
         <!-- Кнопка для отправки -->
-        <button type="submit" onmouseover="this.style.background='#002335'"
-                    onmouseout="this.style.background='#004466'" class="submit-button"  style="margin-bottom: 15px; background: #002335;">Обновить</button>
+        <div class="form-buttons">
+            <button type="submit" class="submit-button" style="display: block; width: 25%;  background-color: #3e63f4; color: #fff;
+    border: none; border-radius: 3px; cursor: pointer; font-size: 16px; margin-bottom: 15px;">Обновить</button>
+            <a href="{% url 'courses_app:profile' %}" class="color_link">Назад в профиль</a>
+        </div>
     </form>
-
-    <!-- Ссылка назад в профиль -->
-    <a href="{% url 'courses_app:profile' %}" class="color_link">Назад в профиль</a>
 </section>
 
 {% endblock %}
