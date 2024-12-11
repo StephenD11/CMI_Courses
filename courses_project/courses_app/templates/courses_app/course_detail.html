@@ -3,6 +3,10 @@
 {% block title %}{{ course.title }}{% endblock %}
 
 {% block content %}
+
+<!--Все блоки-->
+<section class="course-det-main">
+
   <h1>{{ course.title }}</h1>
   <p>{{ course.description }}</p>
 
@@ -46,12 +50,14 @@
     <!-- Форма для ввода пароля -->
     <section class="course-password-form">
       <h3>Введите пароль для доступа к курсу:</h3>
-      <form method="post">
+      <form method="post" style="display:flex;flex-direction: column;">
         {% csrf_token %}
         {{ form.as_p }}  <!-- Выводим форму пароля -->
-        <button type="submit">Подтвердить</button>
+        <button type="submit" style="">Подтвердить</button>
       </form>
     </section>
   {% endif %}
+
+</section>
 
 {% endblock %}

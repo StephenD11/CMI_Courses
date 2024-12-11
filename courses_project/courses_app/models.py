@@ -29,7 +29,7 @@ class CustomUser(AbstractUser):
         unique=True,
         help_text='Введите имя пользователя',
         error_messages={'unique': "Такое имя уже существует, выбирете другое"},
-        verbose_name='Логин'
+        verbose_name='Логин',
     )
     # Поле для email пользователя, оно также уникально
     email = models.EmailField(

@@ -1,10 +1,38 @@
 {% extends 'courses_app/main.html' %}
-
+{% load static %}
 {% block title %}Контакты{% endblock %}
 
 {% block content %}
-    <h1>Контакты</h1>
-    <p>Контактная информация:</p>
-    <p>Телефон: +7 (123) 456-78-90</p>
-    <p>Email: example@domain.com</p>
+<section class="contact-main" style="margin-top:-50px;">
+
+    <!--Основной блок-->
+    <div style="margin-left:50px; margin-top:100px;">
+        <div>
+            <img src="{% static 'images/post.png' %}" alt="Логотип" style="width: 200px; margin-right:50px;">
+        </div>
+                <br>
+        <p style=" width:200px"><b style="color:#3e63f4; font-size:45px;">КОНТАКТНАЯ ИНФОРМАЦИЯ</b></p>
+        <p style="font-size:20px; width:400px;"><b>Адрес:</b> Москва, 2-ой Рощинский проезд, д.8, стр. 7 офис 919; Индекс: 115419;</p>
+        <p style="font-size:20px; width:500px;"><b>Часы работы:</b> Пн–Пт: 9:00 – 17:00</p>
+        <p style="font-size:20px; width:400px;"><b>Телефон:</b> +7 (495) 633-11-12</p>
+        <p style="font-size:20px; width:400px;"><b>Email:</b> nmo@idopobr.ru</p>
+        <p style="font-size:15px; width:400px;"> Быстрая связь с менеджером</p>
+        <div>
+            <a href="https://wa.me/79781636186" target="_blank" class="submit-button-reg" style="font-size:17px;">Whats App</a>
+        </div>
+
+
+    </div>
+
+    <div class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?indoorLevel=1&ll=37.603011%2C55.706320&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjY4MDM3NRJD0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsIDIt0Lkg0KDQvtGJ0LjQvdGB0LrQuNC5INC_0YDQvtC10LfQtCwgOCIKDXxpFkIVRdNeQg%2C%2C&z=17.24"
+                width="900" height="500" frameborder="0.5" allowfullscreen="true"
+                style="position:relative; border-radius:25px;"></iframe>
+    </div>
+
+
+</section>
+
+
 {% endblock %}
+

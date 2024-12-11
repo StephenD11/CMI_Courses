@@ -6,71 +6,80 @@
 <section class="all-reg-place">
 
     <section>
-        <img src="{% static 'images/tab-4.png' %}" alt="Логотип" style="border-radius: 25px; width:250px; margin-top:60px;">
+        <img src="{% static 'images/tab-4.png' %}" alt="Логотип"
+             style="border-radius: 25px; width:250px; margin-top:60px;">
     </section>
 
     <section>
 
 
-    <h1 style="color: #000000; display: flex; justify-content: center; font-size:22px;">СТРАНИЦА РЕГИСТРАЦИИ</h1>
-    <section class="two-column-container-reg-place">
+        <h1 style="color: #000000; display: flex; justify-content: center; font-size:22px;">СТРАНИЦА РЕГИСТРАЦИИ</h1>
+        <section class="two-column-container-reg-place">
 
-        <section class="two-column-container-reg">
+            <section class="two-column-container-reg">
 
-            <form method="post">
-                {% csrf_token %}
+                <form method="post">
+                    {% csrf_token %}
 
-                <!-- Поле для имени пользователя -->
-                <div class="form-group">
-                    <label for="id_username">ЛОГИН</label>
-                    {{ form.username }}
-                    {% if form.username.help_text %}
-                    <small class="form-text text-muted">{{ form.username.help_text }}</small>
-                    {% endif %}
-                </div>
+                    <!-- Поле для имени пользователя -->
+                    <div class="form-group">
+                        <label for="id_username">ЛОГИН</label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                        <small class="error-text text-danger">
+                            {{ form.username.errors|join:", " }}
+                        </small>
+                        {% endif %}
+                    </div>
 
-                <!-- Поле для email -->
-                <div class="form-group">
-                    <label for="id_email">EMAIL</label>
-                    {{ form.email }}
-                    {% if form.email.help_text %}
-                    <small class="form-text text-muted">{{ form.email.help_text }}</small>
-                    {% endif %}
-                </div>
+                    <div class="form-group">
+                        <label for="id_email">EMAIL</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <small class="error-text text-danger">
+                            {{ form.email.errors|join:", " }}
+                        </small>
+                        {% endif %}
+                    </div>
 
-                <!-- Поля для пароля -->
-                <div class="form-group">
-                    <label for="id_password1">ПАРОЛЬ</label>
-                    {{ form.password1 }}
-                    {% if form.password1.help_text %}
-                    <small class="form-text text-muted">{{ form.password1.help_text }}</small>
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    <label for="id_password2">ПОДТВЕРЖДЕНИЕ ПАРОЛЯ</label>
-                    {{ form.password2 }}
-                    {% if form.password2.help_text %}
-                    <small class="form-text text-muted">{{ form.password2.help_text }}</small>
-                    {% endif %}
-                </div>
+                    <div class="form-group">
+                        <label for="id_password1">ПАРОЛЬ</label>
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                        <small class="error-text text-danger">
+                            {{ form.password1.errors|join:", " }}
+                        </small>
+                        {% endif %}
+                    </div>
 
-                <!-- Кнопка для отправки -->
-                <button type="submit" class="submit-button">Подтвердить</button>
-            </form>
+                    <div class="form-group">
+                        <label for="id_password2">ПОДТВЕРЖДЕНИЕ ПАРОЛЯ</label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                        <small class="error-text text-danger">
+                            {{ form.password2.errors|join:", " }}
+                        </small>
+                        {% endif %}
+                    </div>
 
+                    <!-- Кнопка для отправки -->
+                    <button type="submit" class="submit-button">Подтвердить</button>
+                </form>
+
+
+            </section>
 
         </section>
+        <div style="color: #000000; display: flex; justify-content: center;">
+            <p style="position:relative; top:20px; font-size:20px;">Уже есть аккаунт? <a
+                    href="{% url 'courses_app:login' %}" class="submit-button-reg">Войти</a></p>
+        </div>
 
     </section>
-    <div style="color: #000000; display: flex; justify-content: center;">
-        <p style="position:relative; top:20px; font-size:20px;">Уже есть аккаунт? <a
-                href="{% url 'courses_app:login' %}" class="submit-button-reg">Войти</a></p>
-    </div>
-
-</section>
 
     <section>
-        <img src="{% static 'images/tab-5.png' %}" alt="Логотип" style="border-radius: 25px; width:250px; margin-top:60px;">
+        <img src="{% static 'images/tab-5.png' %}" alt="Логотип"
+             style="border-radius: 25px; width:250px; margin-top:60px;">
     </section>
 
 

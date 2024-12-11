@@ -1,6 +1,9 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
+
+
+
   <h1>{{ course.title }}</h1>
   <p>{{ course.description }}</p>
 
@@ -19,5 +22,7 @@
 
   <h3>Прогресс:</h3>
   <p>{{ user_topics|length }} из {{ topics|length }} тем завершено.</p>
+
+
 
 {% endblock %}

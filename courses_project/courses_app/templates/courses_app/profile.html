@@ -6,11 +6,11 @@
 
 <!--Общая часть-->
 <section class="final-prof">
-    <section style="display:flex;flex-direction: column;">
+    <section style="display:flex;flex-direction: column; gap:25px; ">
         <img src="{% static 'images/tab-12.png' %}" alt="Логотип"
-             style="border-radius: 25px; width:180px; margin-top:40px; margin-right:40px;">
+             style="border-radius: 25px; width:160px; margin-top:20px; margin-right:40px; ">
         <img src="{% static 'images/tab-13.png' %}" alt="Логотип"
-             style="border-radius: 25px; width:180px; margin-top:20px; margin-right:40px;">
+             style="border-radius: 25px; width:160px; margin-top:20px; margin-right:40px;">
     </section>
 
 
@@ -32,8 +32,8 @@
             </div>
         </div>
         <div>
-            <p style="font-size:22px;">Мои данные</p>
-            <div class="main-prof-second">
+            <p style="font-size:22px; " >Мои данные</p>
+            <div class="main-prof-second" >
 
 
                 <div style="display: flex; margin-right: 20px; gap:55px;">
@@ -83,7 +83,7 @@
 
 
     <div>
-        <p style="font-size: 25px; margin-left:40px; max-width:25px;">ДОСТУПНЫЕ КУРСЫ</p>
+        <p style="font-size: 25px; margin-left:40px; max-width:25px; margin-top:30px; ">ДОСТУПНЫЕ КУРСЫ</p>
         <ul>
             {% for course in courses %}
             <li style="display: flex; margin-right: 20px; margin-bottom: 20px;">

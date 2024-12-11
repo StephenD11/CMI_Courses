@@ -460,9 +460,10 @@ h2 {
 
 .main-prof {
     display: flex;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border-radius:25px;
     width: 100%;
-    max-width: 650px;
+    max-width: 600px;
     flex-direction: column;
     align-items: center;
     height:750px;
@@ -472,7 +473,7 @@ h2 {
 
 .main-prof-first {
     background: #ffffff;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     margin-left: -10px;
     margin-right: -10px;
     padding: 0 20px;
@@ -484,7 +485,7 @@ h2 {
 .main-prof-second {
 
     background: #ffffff;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);  /* Добавляем тень */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);  /* Добавляем тень */
     margin-left: -10px; /* Расширяем фон влево */
     margin-right: -10px; /* Расширяем фон вправо */
     padding: 0 20px; /* Добавляем внутренние отступы */
@@ -556,4 +557,65 @@ h2 {
     flex-direction: column;
     max-width: 1100px;
     margin: auto;
+}
+
+.doc-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.doc-first {
+    display:flex;
+    gap: 25px;
+
+}
+
+.text-danger {
+    color: red;
+    font-size: 0.875rem; /* 14px, можно изменить */
+    margin-top: 5px;
+    display:flex;
+    justify-content: center;
+}
+
+.contact-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width:2100px;
+    height:600px;
+    margin: 0 auto;
+    gap:100px;
+    justify-content: center;
+}
+
+.map {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 150px;
+
+}
+
+.course-det-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-det-com-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-password-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

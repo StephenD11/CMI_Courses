@@ -31,6 +31,7 @@
             <div>
                 <p style="font-size:18px">Вы вошли как: <b>{{ user.username }}</b></p>
             </div>
+                            <span class="separator"></span> <!-- Линия -->
             <div>
                 <a href="{% url 'courses_app:profile' %}" class="auth-button">Профиль</a>
                 <a href="{% url 'courses_app:logout' %}" class="auth-button">Выйти</a>

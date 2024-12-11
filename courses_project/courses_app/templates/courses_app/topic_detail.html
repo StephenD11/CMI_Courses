@@ -3,37 +3,47 @@
 {% block title %}{{ topic.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ topic.title }}</h1>
-<p>{{ topic.description }}</p>
 
-<div class="navigation">
-    {% if previous_topic %}
-        <a href="{% url 'courses_app:topic_detail' course.id previous_topic.id %}" class="btn btn-secondary">← Предыдущая тема</a>
-    {% endif %}
 
-    {% if next_topic %}
-        <a href="{% url 'courses_app:topic_detail' course.id next_topic.id %}" class="btn btn-primary">Следующая тема →</a>
-    {% endif %}
-</div>
-<div>
-    <a href="{% url 'courses_app:course_detail' course.id %}">К курсам</a>
-</div>
+<!--Все блоки-->
+<section class="course-det-com-main">
 
-<h3>Прогресс:</h3>
-<p>{{ user_topics|length }} из {{ course.topics.all|length }} тем завершено.</p>
+    <h1>{{ topic.title }}</h1>
+    <p>{{ topic.description }}</p>
 
-{% if topic.is_completed %}
+    <div class="navigation">
+        {% if previous_topic %}
+        <a href="{% url 'courses_app:topic_detail' course.id previous_topic.id %}" class="btn btn-secondary">←
+            Предыдущая тема</a>
+        {% endif %}
+
+        {% if next_topic %}
+        <a href="{% url 'courses_app:topic_detail' course.id next_topic.id %}" class="btn btn-primary">Следующая тема
+            →</a>
+        {% endif %}
+    </div>
+    <div>
+        <a href="{% url 'courses_app:course_detail' course.id %}">К курсам</a>
+    </div>
+
+    <h3>Прогресс:</h3>
+    <p>{{ user_topics|length }} из {{ course.topics.all|length }} тем завершено.</p>
+
+    {% if topic.is_completed %}
     <p>Вы завершили эту тему!</p>
     <p>Вы можете отменить действие:</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit" name="undo" class="btn btn-warning">Отменить завершение</button>
     </form>
-{% else %}
+    {% else %}
     <form method="post">
         {% csrf_token %}
         <button type="submit" name="complete" class="btn btn-success">Завершить тему</button>
     </form>
-{% endif %}
+    {% endif %}
+
+
+</section>
 
 {% endblock %}

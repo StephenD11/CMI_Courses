@@ -17,6 +17,12 @@ class CustomUserCreationForm(UserCreationForm):
             'mid_name': '',
         }
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("Этот email уже зарегистрирован.")
+        return email
+
     # Переопределение полей пароля с пустыми подсказками
     password1 = forms.CharField(
         label="Пароль",

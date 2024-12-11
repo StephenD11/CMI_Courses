@@ -3,16 +3,76 @@
 {% block title %}Документы{% endblock %}
 
 {% block content %}
-    <h1>Документы</h1>
-    <section>
+
+<section class="doc-main">
+    <p style="color:#3e63f4; font-size:40px;">ОБЩАЯ ИНФОРМАЦИЯ</p>
+    <br>
+    <br>
+    <!--Первый блок-->
+    <div class="doc-first">
         <div>
-            <div>
-                <img src="{% static 'images/.png' %}" alt="Логотип">
-            </div>
+            <img src="{% static 'images/doc.png' %}" alt="Логотип"
+                 style="border-radius: 25px; width:300px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2); ">
         </div>
-    </section>
+
+        <div style="border-radius:25px; width: 750px; height: 300px;">
+            <p style="font-size:24px; margin-left:40px; margin-top:40px;"><b>ПЕРЕЧЕНЬ ДОКУМЕНТОВ, НЕОБХОДИМЫХ ДЛЯ
+                ЗАЧИСЛЕНИЯ</b></p>
+            <ul style="font-size:18px; margin-left:14px;">
+                <li style="margin-bottom:15px;">Копия документа о высшем или среднем профессиональном образовании</li>
+                <li style="margin-bottom:15px;">Копия документа о дополнительном профессиональном образовании <span
+                        style="font-size:12px; color:#3e63f4;">(при наличии)</span></li>
+                <li style="margin-bottom:15px;">Копия документа об изменении ФИО <span
+                        style="font-size:12px; color:#3e63f4;">(при необходимости)</span></li>
+                <li style="margin-bottom:15px;">Копия паспорта <span style="font-size:12px; color:#3e63f4;">(с пропиской)</span>
+                </li>
+                <li>Копия СНИЛС</li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!--Второй блок-->
+    <div class="doc-first">
+
+        <div style="display:flex; display: flex; flex-direction: column; align-items: flex-end;">
+            <p style="font-size:24px; margin-right:40px; margin-top:40px;"><b>ОБРАЗЦЫ ВЫДАВАЕМЫХ ДОКУМЕНТОВ</b></p>
+            <ul style="font-size:18px; list-style-position: inside; text-align: right;margin-left:14px; direction: rtl;">
+                <li style="margin-bottom:15px;">Это образцы дипломов, выдаваемые после успешного завершения курса</li>
+                <li style="margin-bottom:15px;">Вы получите официальный документ государственного образца</li>
+                <li style="margin-bottom:15px;">Ваши достижения будут подтверждены документами, аналогичными этим</li>
+                <li style="margin-bottom:15px;">Это документы, подтверждают прохождение вами курса</li>
+            </ul>
+        </div>
+
+        <div>
+            <img src="{% static 'images/dip.png' %}" alt="Логотип"
+                 style="border-radius: 25px; width:500px; margin-top:-75px; margin-bottom: -25px;">
+        </div>
+    </div>
+    <!--Третий блок-->
+    <div class="doc-first">
+        <div>
+            <img src="{% static 'images/pay.png' %}" alt="Логотип"
+                 style="border-radius: 25px; width:300px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2); ">
+        </div>
+        <div style="border-radius:25px; width: 750px; height: 300px; margin-bottom: 250px;">
+            <p style="font-size:24px; margin-left:40px; margin-top:40px;"><b>СПОСОБЫ ОПЛАТЫ</b></p>
+            <ul style="font-size:18px; margin-left:14px;">
+                <li style="margin-bottom:15px;">Платежные реквизиты <span
+                        style="font-size:12px; color:#3e63f4;">(Если Вам удобнее производить оплату по безналичному расчету)</span></li>
+                <li style="margin-bottom:15px;">Платежные реквизиты через «Сбербанк России»</li>
+                <li style="margin-bottom:15px;">Перевод на счёт через Сбербанк Онлайн</li>
+                <li style="margin-bottom:15px;">Перевод в мобильной версии Сбербанк Онлайн</li>
+                <li style="margin-bottom:15px;">Квитанция <span
+                        style="font-size:12px; color:#3e63f4;">по расчетному счету (в банке или на почте) на бумажном носителе</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 {% block footer %}
-    <!-- Оставляем этот блок пустым, чтобы не отображался footer -->
+<!-- Оставляем этот блок пустым, чтобы не отображался footer -->
 {% endblock %}
