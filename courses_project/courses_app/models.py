@@ -48,7 +48,9 @@ class CustomUser(AbstractUser):
     link_work = models.CharField(
         max_length=500,
         default='',
-        verbose_name='Ссылка на работу'
+        verbose_name='Ссылка на работу',
+        blank=True,
+        null=True,
     )
 
     mid_name = models.CharField(default='Неизвестно', max_length=100,verbose_name='Отчество', blank=True)

@@ -3,12 +3,28 @@
 {% block title %}Контрольная работа{% endblock %}
 
 {% block content %}
-    <h1>Контрольная работа для курса: {{ course.title }}</h1>
-    <h4>Пришлите ссылку на файл с вашим проектом</h4>
-    <form method="post">
-        {% csrf_token %}
-        <label for="assignment_url">Ссылка на тестовое задание:</label>
-        <input type="url" name="assignment_url" id="assignment_url" maxlength="500" required>
-        <button type="submit">Отправить</button>
-    </form>
+
+<section class="course-det-main">
+    <div style="display: flex; flex-direction:column; align-items: center; margin-top:25px;">
+        <h1>КОНТРОЛЬНАЯ РАБОТА ДЛЯ КУРСА: {{ course.title|upper }}</h1>
+        <h3 style="color:#3e63f4;">Пришлите ссылку на файл с вашим проектом</h3>
+        <form method="post">
+            {% csrf_token %}
+            <label for="assignment_url">Ссылка на тестовое задание:</label>
+            <input type="url" name="assignment_url" id="assignment_url" maxlength="500" required style="width: 300px; font-size: 16px;">
+
+            <button type="submit" class="submit-button-cur-det">Отправить</button>
+        </form>
+    </div>
+
+        <div style="margin-top:25px; margin-bottom:125px;">
+        <a href="{% url 'courses_app:course_detail' course.id %}" class="submit-button-cur-det"
+           style="background:#444444; transition: background-color 0.3s;"
+           onmouseover="this.style.backgroundColor='#6d6d6d'" onmouseout="this.style.backgroundColor='#444444'">Вернуться
+            на курс</a>
+    </div>
+</section>
+
+
+
 {% endblock %}

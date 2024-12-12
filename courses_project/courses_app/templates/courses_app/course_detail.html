@@ -7,57 +7,65 @@
 <!--Все блоки-->
 <section class="course-det-main">
 
-  <h1>{{ course.title }}</h1>
-  <p>{{ course.description }}</p>
+    <div style="display: flex; flex-direction:column; align-items: center;">
+        <p style="font-size:35px; color:#3e63f4; margin-bottom:0px;"><b>{{ course.title|upper }}</b></p>
+        <p style="text-align: center; width:650px; margin-bottom:25px; ">{{ course.description }}</p>
+    </div>
 
-  <!-- Проверка доступа по паролю -->
-  {% if password_valid and user.role == "student" or user.role == 'admin' %}
+    <!-- Проверка доступа по паролю -->
+    {% if password_valid and user.role == "student" or user.role == 'admin' %}
     <section class="topics">
-      <h2>Темы курса:</h2>
-      <h3>Теперь у вас есть доступ. Нажмите на тему, чтобы войти в нее</h3>
-      <ol>
-        {% for topic in course.topics.all %}
-          <li>
-            {% if topic.is_completed %}
-              <strong><a href="{% url 'courses_app:topic_detail' course_id=course.id topic_id=topic.id %}">{{ topic.title }}</a></strong> (Завершено)
-            {% else %}
-              <a href="{% url 'courses_app:topic_detail' course_id=course.id topic_id=topic.id %}">{{ topic.title }}</a> (Не завершено)
-            {% endif %}
-          </li>
-        {% empty %}
-          <li>Нет доступных тем</li>
-        {% endfor %}
-      </ol>
+        <p style="font-size:35px; margin-bottom:-5px;"> <span style="font-size: 30px;">	&#x1f4d4; </span>ТЕМЫ КУРСА</p>
+        <p style="font-size:16px;  width:300px; display:block; color:#3e63f4; text-align:center;">теперь у вас есть доступ - нажмите на тему, чтобы войти в нее</p>
+        <ol>
+            {% for topic in course.topics.all %}
+            <li style="margin-bottom:15px; font-size:18px;">
+                <a href="{% url 'courses_app:topic_detail' course_id=course.id topic_id=topic.id %}"
+                           class="color-link-cur-det"
+                   style="white-space: nowrap; font-size: 18px;">{{topic.title}}     <span style="font-size:10px;">&#x26a1;&#xfe0f;</span></a>
+            </li>
+            {% empty %}
+            <li>Нет доступных тем</li>
+            {% endfor %}
+        </ol>
         {% if course.id %}
-            <h4>По завершению курса вы можете отправить нам контролью работу по ссылке:</h4>
-            <a href="{% url 'courses_app:assignment_view' course_id=course.id %}">Перейти к заданию</a>
+        <p style="font-size:18px;  width:400px; display:block; text-align:center;">По завершению курса вы можете отправить нам контролью работу по
+            ссылке</p>
+        <a href="{% url 'courses_app:assignment_view' course_id=course.id %}" class="submit-button-cur-det"
+           style="font-size:14px; margin-bottom:35px;">Перейти к заданию</a>
         {% else %}
-            <p>Курс не найден.</p>
-        {% endif %}    </section>
-          {% else %}
+        <p>Курс не найден.</p>
+        {% endif %}
+    </section>
+    {% else %}
     <!-- Если пароль неверный или пользователь не является студентом -->
-    <section class="topics">
-      <h2>Темы курса:</h2>
-      <ol>
-        {% for topic in course.topics.all %}
-          <li>{{ topic.title }}</li>
-        {% empty %}
-          <li>Нет доступных тем</li>
-        {% endfor %}
-      </ol>
-    </section>
+    <section class="topics-for-none" style="margin-bottom:25px;">
+        <section  style="display:flex; flex-direction:column; justify-content:center; align-items: center;">
+            <p style="font-size:35px; margin-bottom:15px;">ТЕМЫ КУРСА</p>
+            <ol>
+                {% for topic in course.topics.all %}
+                <li>{{ topic.title }}</li>
+                {% empty %}
+                <li>Нет доступных тем</li>
+                {% endfor %}
+            </ol>
+        </section>
 
-    <!-- Форма для ввода пароля -->
-    <section class="course-password-form">
-      <h3>Введите пароль для доступа к курсу:</h3>
-      <form method="post" style="display:flex;flex-direction: column;">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Выводим форму пароля -->
-        <button type="submit" style="">Подтвердить</button>
-      </form>
+        <!-- Форма для ввода пароля -->
+        <section class="course-password-form" style="margin-bottom:55px;">
+            <p style="font-size:19px; margin-bottom:0px; color:#9f2626;">У вас нет доступа! Введите пароль курса:</p>
+            <form method="post" style="display:flex;flex-direction: column;">
+                {% csrf_token %}
+                {{ form.as_p }}  <!-- Выводим форму пароля -->
+                <button type="submit" class="submit-button-cur-det">Подтвердить</button>
+            </form>
+        </section>
+        {% endif %}
     </section>
-  {% endif %}
-
 </section>
 
+{% endblock %}
+
+{% block footer %}
+<!-- Оставляем этот блок пустым, чтобы не отображался footer -->
 {% endblock %}
