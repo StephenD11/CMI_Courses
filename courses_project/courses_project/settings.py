@@ -29,9 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Убираем настройки безопасности для HTTPS
-SECURE_SSL_REDIRECT = False  # Это отключает перенаправление на HTTPS
-SECURE_HSTS_SECONDS = 0  # Отключает HSTS
+
 
 # Application definition
 

@@ -472,7 +472,6 @@ h2 {
 }
 
 .main-prof-first {
-    background: #ffffff;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     margin-left: -10px;
     margin-right: -10px;
@@ -480,17 +479,19 @@ h2 {
     height: 215px;
     display: flex;
     flex-direction: column;
+    border-radius: 25px;
 }
 
 .main-prof-second {
 
-    background: #ffffff;
+    border-radius: 25px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);  /* Добавляем тень */
     margin-left: -10px; /* Расширяем фон влево */
     margin-right: -10px; /* Расширяем фон вправо */
     padding: 0 20px; /* Добавляем внутренние отступы */
     height:95px;
     width: 450px;
+
 
 }
 
