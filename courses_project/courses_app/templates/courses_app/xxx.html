@@ -1,0 +1,82 @@
+<div class="lesson-container">
+    <!-- Текстовое описание слева -->
+    <div class="lesson-text">
+        <h2>ЦЕЛЬ:</h2>
+        <p>Понять, что такое функции, зачем они нужны и как их использовать.</p>
+
+        <h2>ЧТО ТАКОЕ ФУНКЦИЯ?</h2>
+        <p>
+            Функция — это блок кода, который можно вызвать в любой момент, передав в него аргументы. Она помогает
+            избегать дублирования кода.
+        </p>
+
+        <h2>Определение функции</h2>
+        <p>
+            Функция определяется с помощью ключевого слова <code>def</code>, за которым идет имя функции и список
+            параметров.
+            После этого идет тело функции, которое выполняется при ее вызове.
+        </p>
+
+        <h2>Шаги для создания функции:</h2>
+        <ul>
+            <li>Шаг 1: Напишите ключевое слово <code>def</code>, за которым идет имя функции.</li>
+            <li>Шаг 2: Введите параметры функции в круглых скобках.</li>
+            <li>Шаг 3: Напишите двоеточие после списка параметров.</li>
+            <li>Шаг 4: Определите тело функции, отступив на 4 пробела.</li>
+            <li>Шаг 5: Вызовите функцию, передав ей необходимые аргументы.</li>
+        </ul>
+
+        <pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 15px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; color: #333;">
+<span style="color: #008000; font-style: italic;"># Шаг 1: Напишите ключевое слово 'def'</span>
+def имя_функции(параметры):
+    <span style="color: #008000; font-style: italic;"># Шаг 4: Определите тело функции</span>
+    # Тело функции с нужной логикой
+    print("Пример функции")
+
+<span style="color: #008000; font-style: italic;"># Шаг 5: Вызовите функцию с аргументами</span>
+имя_функции(аргумент)
+</pre>
+    </div>
+
+    <!-- Код по центру -->
+    <div class="lesson-code">
+    <pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 15px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; color: #333;">
+<span style="color: #008000; font-style: italic;"># Пример: создание и вызов функции</span>
+
+<span style="color: #008000; font-style: italic;"># Шаг 1: Определение функции с параметром</span>
+def приветствие(имя):
+    <span style="color: #008000; font-style: italic;"># Шаг 4: Тело функции</span>
+    print(<span style="color: #a31515;">"Привет,"</span>, имя, <span style="color: #a31515;">"!"</span>)
+
+<span style="color: #008000; font-style: italic;"># Шаг 5: Вызов функции с аргументом</span>
+приветствие(<span style="color: #a31515;">"Анна"</span>)
+приветствие(<span style="color: #a31515;">"Иван"</span>)
+
+<span style="color: #008000; font-style: italic;"># Функция с возвратом значения</span>
+def квадрат(число):
+    <span style="color: #008000; font-style: italic;"># Шаг 4: Тело функции с возвратом значения</span>
+    return число * число
+
+результат = квадрат(<span style="color: #098658;">5</span>)
+print(<span style="color: #a31515;">"Квадрат числа 5:"</span>, результат)
+
+<span style="color: #008000; font-style: italic;"># Функция с несколькими параметрами</span>
+def сумма(а, б):
+    <span style="color: #008000; font-style: italic;"># Шаг 4: Тело функции с несколькими параметрами</span>
+    return а + б
+
+print(<span style="color: #a31515;">"Сумма 3 и 7:"</span>, сумма(<span style="color: #098658;">3</span>, <span
+            style="color: #098658;">7</span>))
+</pre>
+    </div>
+
+    <!-- Вывод итогов справа -->
+    <div class="lesson-summary">
+        <h2>Что нужно запомнить:</h2>
+        <ul>
+            <li>Функции упрощают код и делают его читаемым.</li>
+            <li>return используется для возврата результата.</li>
+            <li>Функция может принимать аргументы, которые передаются при вызове.</li>
+        </ul>
+    </div>
+</div>

@@ -17,7 +17,7 @@
     <section class="topics">
         <p style="font-size:35px; margin-bottom:-5px;"> <span style="font-size: 30px;">	&#x1f4d4; </span>ТЕМЫ КУРСА</p>
         <p style="font-size:16px;  width:300px; display:block; color:#3e63f4; text-align:center;">теперь у вас есть доступ - нажмите на тему, чтобы войти в нее</p>
-        <ol>
+        <ul>
             {% for topic in course.topics.all %}
             <li style="margin-bottom:15px; font-size:18px;">
                 <a href="{% url 'courses_app:topic_detail' course_id=course.id topic_id=topic.id %}"
@@ -27,7 +27,7 @@
             {% empty %}
             <li>Нет доступных тем</li>
             {% endfor %}
-        </ol>
+        </ul>
         {% if course.id %}
         <p style="font-size:18px;  width:400px; display:block; text-align:center;">По завершению курса вы можете отправить нам контролью работу по
             ссылке</p>
@@ -42,13 +42,13 @@
     <section class="topics-for-none" style="margin-bottom:25px;">
         <section  style="display:flex; flex-direction:column; justify-content:center; align-items: center;">
             <p style="font-size:35px; margin-bottom:15px;">ТЕМЫ КУРСА</p>
-            <ol>
+            <ul>
                 {% for topic in course.topics.all %}
                 <li>{{ topic.title }}</li>
                 {% empty %}
                 <li>Нет доступных тем</li>
                 {% endfor %}
-            </ol>
+            </ul>
         </section>
 
         <!-- Форма для ввода пароля -->

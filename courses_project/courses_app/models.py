@@ -120,7 +120,7 @@ class Topic(models.Model):
     )
 
     title = models.CharField(max_length=200,verbose_name='Название')
-    description = models.TextField(verbose_name='Описание')
+    description = models.TextField(verbose_name='Описание (код HTML)')
     order = models.PositiveIntegerField(default=0,verbose_name='Номер темы')  # Поле для сортировки тем в курсе
     is_completed = models.BooleanField(default=False,verbose_name='Завершен')  # Флаг для отслеживания завершения темы
 

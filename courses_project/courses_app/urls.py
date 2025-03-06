@@ -20,3 +20,28 @@ urlpatterns = [
     path('update_profile/', views.update_profile_view, name='update_profile'),
 
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

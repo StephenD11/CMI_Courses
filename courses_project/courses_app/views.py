@@ -8,7 +8,6 @@ from django.contrib.auth import  login, logout
 from django.contrib.auth.forms import  AuthenticationForm
 from .forms import CustomUserCreationForm,CoursePasswordForm, AssignmentForm,UpdateProfileForm
 from django.contrib import messages
-from django.http import HttpResponseForbidden
 from django.urls import reverse
 
 # Create your views here.

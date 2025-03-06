@@ -1,32 +1,34 @@
 {% extends 'courses_app/main.html' %}
 {% load static %}
+{% block title %}IT Курсы ЦМИ{% endblock %}
 
 {% block content %}
 
 <section class="main_section_place">
     <section class="main-sector">
         <div class="main-sector-text">
-            <p style="font-size:80px; margin-bottom: -35px; color: #3e63f4"><b>Развивай навыки</b></p>
-            <p style="font-size:40px; margin-bottom: -5px; color: #000000;" ><b>Создай будущее для своей карьеры</b></p>
-            <p style="font-size:22px;  max-width: 700px; color: #333333">Открой новые горизонты в карьере с курсами от профессионалов. Дистанционное обучение с "ЦМИ" поможет тебе достичь своей мечты и получить диплом выбранной профессии!</p>
+            <p class='index-1'><b>Развивай навыки</b></p>
+            <p class='index-2'><b>Создай будущее для своей карьеры</b></p>
+            <p class='index-3'>Открой новые горизонты в карьере с курсами от профессионалов. Дистанционное обучение с
+                "ЦМИ" поможет тебе достичь своей мечты и получить диплом выбранной профессии!</p>
         </div>
 
-        <div>
-            <img src="{% static 'images/reiting.png' %}" alt="Логотип" style="width: 250px; height: auto; margin-top:1px; margin-bottom: 20px;">
-        </div>
 
         <div>
             {% if request.path == '/' %}
-                <a href="{% url 'courses_app:all_courses' %}" class="auth-button-catalog">Каталог курсов</a>
+            <a href="{% url 'courses_app:all_courses' %}" class="auth-button-catalog">КАТАЛОГ КУРСОВ</a>
             {% endif %}
         </div>
     </section>
 
-    <section style="margin-bottom:20px; position: relative;top: 60px;">
-        <img src="{% static 'images/dev.png' %}" alt="Логотип" style="width: 600px; height: auto; ">
+    <section class="picture-index">
+        <picture>
+            <source srcset="{% static 'images/dev-mob.png' %}" media="(max-width: 910px)">
+            <img src="{% static 'images/dev.png' %}" alt="Логотип" class="main-img">
+        </picture>
     </section>
-</section>
 
+</section>
 
 
 {% endblock %}
