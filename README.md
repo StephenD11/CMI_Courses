@@ -1,1 +1,1 @@
-Web-Приложение для Института занимающегося Повышением Квалификации и Переподготовки. Создан отдельный сайт специально для обучения  IT специалистов отдельно от основного сайта фирмы. 
+A Web Application for an Institute engaged in Advanced Training and Retraining. A website has been created specifically for training IT specialists separately from the company's main website.
